@@ -19,293 +19,94 @@ export const findPropertiesInstancePage =
   }
   UNION
   {
-    ?id coin-schema:denomination ?denomination__id .
+    ?id nmo:hasDenomination ?denomination__id .
     ?denomination__id skos:prefLabel ?denomination__prefLabel .
     FILTER(LANG(?denomination__prefLabel) = '<LANG>')
     BIND(CONCAT("/denominations/page/", REPLACE(STR(?denomination__id), "^.*\\\\/(.+)", "$1")) AS ?denomination__dataProviderUrl)
   }
   UNION
   {
-    ?id coin-schema:mint ?mint__id .
+    ?id nmo:hasMint ?mint__id .
     ?mint__id skos:prefLabel ?mint__prefLabel .
     FILTER(LANG(?mint__prefLabel) = '<LANG>')
     BIND(CONCAT("/mints/page/", REPLACE(STR(?mint__id), "^.*\\\\/(.+)", "$1")) AS ?mint__dataProviderUrl)
   }
   UNION
   {
-    ?id coin-schema:municipality ?municipality__id .
-    ?municipality__id coin-schema:yso/skos:prefLabel ?municipality__prefLabel .
-    FILTER(LANG(?municipality__prefLabel) = '<LANG>')
-    BIND(CONCAT("/municipalities/page/", REPLACE(STR(?municipality__id), "^.*\\\\/(.+)", "$1")) AS ?municipality__dataProviderUrl)
-  }
-  UNION
-  {
-    ?id coin-schema:authority ?authority__id .
+    ?id nmo:hasAuthority ?authority__id .
     ?authority__id skos:prefLabel ?authority__prefLabel .
     FILTER(LANG(?authority__prefLabel) = '<LANG>')
     BIND(CONCAT("/authorities/page/", REPLACE(STR(?authority__id), "^.*\\\\/(.+)", "$1")) AS ?authority__dataProviderUrl)
   }
   UNION
   {
-    ?id coin-schema:period ?period__id .
+    ?id nmo:fieldOfNumismatics ?period__id .
     ?period__id skos:prefLabel ?period__prefLabel .
     FILTER(LANG(?period__prefLabel) = '<LANG>')
     BIND(CONCAT("/periods/page/", REPLACE(STR(?period__id), "^.*\\\\/(.+)", "$1")) AS ?period__dataProviderUrl)
   }
   UNION
   {
-    ?id coin-schema:context ?context__id .
-    FILTER(LANG(?context__prefLabel) = '<LANG>')
-    ?context__id skos:prefLabel ?context__prefLabel
-  }
-  UNION
-  {
-    ?id coin-schema:country ?country__id .
-    ?country__id skos:prefLabel ?country__prefLabel .
-    FILTER(LANG(?country__prefLabel) = '<LANG>')
-  }
-  UNION
-  {
-    ?id coin-schema:material ?material__id .
+    ?id nmo:hasMaterial ?material__id .
     ?material__id skos:prefLabel ?material__prefLabel .
     FILTER(LANG(?material__prefLabel) = '<LANG>')
     BIND(CONCAT("/materials/page/", REPLACE(STR(?material__id), "^.*\\\\/(.+)", "$1")) AS ?material__dataProviderUrl)
   }
-  UNION
-  {
-    ?id coin-schema:qualifier ?qualifier__id .
-    FILTER(LANG(?qualifier__prefLabel) = '<LANG>')
-    ?qualifier__id skos:prefLabel ?qualifier__prefLabel
-  }
-  UNION
-  {
-    ?id coin-schema:denomination ?denomination__id .
-    ?denomination__id skos:prefLabel ?denomination__prefLabel .
-    BIND(CONCAT("/denominations/page/", REPLACE(STR(?denomination__id), "^.*\\\\/(.+)", "$1")) AS ?denomination__dataProviderUrl)
-  }
-  UNION
-  {
-    ?id coin-schema:registration_year ?year .
-    ?id coin-schema:number ?number .
-    BIND(CONCAT(STR(?year),'-',STR(?number)) AS ?row)
-  }
-  UNION
-  {
-    ?id coin-schema:latest_year ?latestYear__id .
-    BIND(IF(STRLEN(STR(?latestYear__id)) < 4, CONCAT('0',STR(?latestYear__id)), STR(?latestYear__id)) AS ?latestYear__prefLabel)
-    #BIND(substr(concat(str(?latestYear__id),"0000"),1,4) AS ?latestYear__prefLabel)
-    BIND(CONCAT('https://<LANG>.wikipedia.org/wiki/',STR(?latestYear__id)) AS ?latestYear__dataProviderUrl)
-  }
-  UNION
-  {
-    ?id coin-schema:earliest_year ?earliestYear__id .
-    #BIND(SUBSTR(CONCAT(STR(?earliestYear__id),"0000"),1,4) AS ?earliestYear__prefLabel)
-    BIND(IF(STRLEN(STR(?earliestYear__id)) < 4, CONCAT('0',STR(?earliestYear__id)), STR(?earliestYear__id)) AS ?earliestYear__prefLabel)
-    BIND(CONCAT('https://<LANG>.wikipedia.org/wiki/',STR(?earliestYear__id)) AS ?earliestYear__dataProviderUrl)
-  }
-  UNION
-  {
-    ?id coin-schema:note ?note .
-  }
-  UNION
-  {
-    ?id coin-schema:ascension_number ?ascensionNumber__id .
-  }
-  UNION
-  {
-    ?id coin-schema:registration_year ?registrationYear .
-  }
-  UNION
-  {
-    ?id coin-schema:has_image/coin-schema:image_description ?imageDescription .
-  }
-  OPTIONAL
-  {
-    ?id coin-schema:has_image/coin-schema:finna_id ?imageidTemp .
-    ?id coin-schema:has_image/coin-schema:image_description ?imagedescriptionTemp .
-    BIND(CONCAT('https://finna.fi/Cover/Show?source=Solr&id=', str(?imageidTemp), '&index=0&size=small') AS ?imageurlTemp)
-  }
-  BIND(COALESCE(?imageidTemp,"https://upload.wikimedia.org/wikipedia/commons/2/25/Icon-round-Question_mark.jpg") as ?image__id)
-  BIND(COALESCE(?imageurlTemp,"https://upload.wikimedia.org/wikipedia/commons/2/25/Icon-round-Question_mark.jpg") as ?image__url)
-  BIND(COALESCE(?imagedescriptionTemp,"Tarpeeksi vastaavaa kuvaa ei löytynyt Finnasta automaattisella haulla.") as ?image__description)
-  BIND(?image__description AS ?image__title)
-  OPTIONAL {
-    ?id coin-schema:material/skos:prefLabel ?materialTemp .
-    FILTER(LANG(?materialTemp) = 'fi')
-  }
-  OPTIONAL {
-    ?id coin-schema:authority/skos:prefLabel ?authorityTemp .
-    FILTER(LANG(?authorityTemp) = 'fi')
-  }
-  OPTIONAL {
-    ?id coin-schema:denomination/skos:prefLabel ?denominationTemp .
-    FILTER(LANG(?denominationTemp) = 'fi')
-  }
-  BIND(COALESCE(?authorityTemp,"") as ?authorityLabel)
-  BIND(COALESCE(?denominationTemp,"") as ?denominationLabel)
-  BIND(CONCAT(?authorityLabel, ' ', ?denominationLabel) AS ?searchTermTemp)
-  BIND(REPLACE(?searchTermTemp, " ","+","i") AS ?searchTerm)
-  BIND(CONCAT("https://finna.fi/Search/Results?lookfor=", ?searchTerm, "&type=AllFields") AS ?image__finnasearch)
-
 
 `
 
 // USe for all results
 export const findPropertiesFacetResults = `
-  {
+{
     BIND(?id as ?uri__id)
     BIND(?id as ?uri__dataProviderUrl)
     BIND(?id as ?uri__prefLabel)
-    #?id coin-schema:registration_year ?year .
-    #?id coin-schema:number ?number .
-    #BIND(CONCAT(STR(?year),':',STR(?number)) AS ?row)
-
-    ?id coin-schema:id ?localId__id .
-    BIND(?localId__id AS ?localId__prefLabel)
-    BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?localId__dataProviderUrl)
+    ?id coin-schema:registration_year ?year .
+    ?id coin-schema:number ?number .
+    BIND(CONCAT(STR(?year),'-',STR(?number)) AS ?row)
 
 
     ?id skos:prefLabel ?prefLabel__id .
-    BIND(?prefLabel__id AS ?prefLabel__prefLabel)
+    ?id skos:prefLabel ?prefLabel__prefLabel .
     FILTER(LANG(?prefLabel__prefLabel) = '<LANG>')
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+    BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)
   }
   UNION
   {
-    ?id coin-schema:denomination ?denomination__id .
+    ?id nmo:hasDenomination ?denomination__id .
     ?denomination__id skos:prefLabel ?denomination__prefLabel .
     FILTER(LANG(?denomination__prefLabel) = '<LANG>')
     BIND(CONCAT("/denominations/page/", REPLACE(STR(?denomination__id), "^.*\\\\/(.+)", "$1")) AS ?denomination__dataProviderUrl)
   }
   UNION
   {
-    ?id coin-schema:mint ?mint__id .
+    ?id nmo:hasMint ?mint__id .
     ?mint__id skos:prefLabel ?mint__prefLabel .
     FILTER(LANG(?mint__prefLabel) = '<LANG>')
     BIND(CONCAT("/mints/page/", REPLACE(STR(?mint__id), "^.*\\\\/(.+)", "$1")) AS ?mint__dataProviderUrl)
   }
   UNION
   {
-    ?id coin-schema:municipality ?municipality__id .
-    ?municipality__id coin-schema:yso/skos:prefLabel ?municipality__prefLabel .
-    FILTER(LANG(?municipality__prefLabel) = '<LANG>')
-    BIND(CONCAT("/municipalities/page/", REPLACE(STR(?municipality__id), "^.*\\\\/(.+)", "$1")) AS ?municipality__dataProviderUrl)
-  }
-  UNION
-  {
-    ?id coin-schema:authority ?authority__id .
+    ?id nmo:hasAuthority ?authority__id .
     ?authority__id skos:prefLabel ?authority__prefLabel .
     FILTER(LANG(?authority__prefLabel) = '<LANG>')
     BIND(CONCAT("/authorities/page/", REPLACE(STR(?authority__id), "^.*\\\\/(.+)", "$1")) AS ?authority__dataProviderUrl)
   }
   UNION
   {
-    ?id coin-schema:context ?context__id .
-    FILTER(LANG(?context__prefLabel) = '<LANG>')
-    ?context__id skos:prefLabel ?context__prefLabel .
-  }
-  UNION
-  {
-    ?id coin-schema:country ?country__id .
-    ?country__id skos:prefLabel ?country__prefLabel .
-    FILTER(LANG(?country__prefLabel) = '<LANG>')
-  }
-  UNION
-  {
-    ?id coin-schema:period ?period__id .
+    ?id nmo:fieldOfNumismatics ?period__id .
     ?period__id skos:prefLabel ?period__prefLabel .
     FILTER(LANG(?period__prefLabel) = '<LANG>')
     BIND(CONCAT("/periods/page/", REPLACE(STR(?period__id), "^.*\\\\/(.+)", "$1")) AS ?period__dataProviderUrl)
   }
   UNION
   {
-    ?id coin-schema:material ?material__id .
+    ?id nmo:hasMaterial ?material__id .
     ?material__id skos:prefLabel ?material__prefLabel .
     FILTER(LANG(?material__prefLabel) = '<LANG>')
     BIND(CONCAT("/materials/page/", REPLACE(STR(?material__id), "^.*\\\\/(.+)", "$1")) AS ?material__dataProviderUrl)
   }
-  UNION
-  {
-    ?id coin-schema:qualifier ?qualifier__id .
-    FILTER(LANG(?qualifier__prefLabel) = '<LANG>')
-    ?qualifier__id skos:prefLabel ?qualifier__prefLabel .
-  }
-  UNION
-  {
-    ?id coin-schema:latest_year ?latestYear__id .
-    BIND(IF(STRLEN(STR(?latestYear__id)) < 4, CONCAT('0',STR(?latestYear__id)), STR(?latestYear__id)) AS ?latestYear__prefLabel)
-    #BIND(substr(concat(str(?latestYear__id),"0000"),1,4) AS ?latestYear__prefLabel)
-    BIND(CONCAT('https://<LANG>.wikipedia.org/wiki/',STR(?latestYear__id)) AS ?latestYear__dataProviderUrl)
-  }
-  UNION
-  {
-    ?id coin-schema:earliest_year ?earliestYear__id .
-    #BIND(SUBSTR(CONCAT(STR(?earliestYear__id),"0000"),1,4) AS ?earliestYear__prefLabel)
-    BIND(IF(STRLEN(STR(?earliestYear__id)) < 4, CONCAT('0',STR(?earliestYear__id)), STR(?earliestYear__id)) AS ?earliestYear__prefLabel)
-    BIND(CONCAT('https://<LANG>.wikipedia.org/wiki/',STR(?earliestYear__id)) AS ?earliestYear__dataProviderUrl)
-  }
-  UNION
-  {
-    ?id coin-schema:note ?note .
-  }
-  UNION
-  {
-    ?id coin-schema:ascension_number ?ascensionNumber__id .
-    BIND (?ascensionNumber__id AS ?ascensionNumber__prefLabel) .
-    OPTIONAL {
-      FILTER (CONTAINS(?ascensionNumber__prefLabel, 'KM'))
-      BIND("https://www.kyppi.fi/palveluikkuna/kmloyto/read/asp/r_default.aspx" AS ?ascensionNumber__dataProviderUrl)
-      #BIND(IF(CONTAINS(?ascensionNumber__prefLabel, 'KM'), "https://www.kyppi.fi/palveluikkuna/kmloyto/", "") AS ?ascensionNumber__dataProviderUrl)
-    }
-  }
-  UNION
-  {
-    ?id coin-schema:registration_year ?registrationYear .
-  }
-  UNION
-  {
-    ?id coin-schema:has_image/coin-schema:image_description ?imageDescription .
-  }
-  OPTIONAL
-  {
-    ?id coin-schema:has_image/coin-schema:finna_id ?imageidTemp .
-    ?id coin-schema:has_image/coin-schema:image_description ?imagedescriptionTemp .
-    BIND(CONCAT('https://finna.fi/Cover/Show?source=Solr&id=', str(?imageidTemp), '&index=0&size=small') AS ?imageurlTemp)
-  }
-  BIND(COALESCE(?imageidTemp,"https://upload.wikimedia.org/wikipedia/commons/2/25/Icon-round-Question_mark.jpg") as ?image__id)
-  BIND(COALESCE(?imageurlTemp,"https://upload.wikimedia.org/wikipedia/commons/2/25/Icon-round-Question_mark.jpg") as ?image__url)
-  BIND(COALESCE(?imagedescriptionTemp,"Tarpeeksi vastaavaa kuvaa ei löytynyt Finnasta automaattisella haulla.") as ?image__description)
-  BIND(?image__description AS ?image__title)
-  OPTIONAL {
-    ?id coin-schema:material/skos:prefLabel ?materialTemp .
-    FILTER(LANG(?materialTemp) = 'fi')
-  }
-  OPTIONAL {
-    ?id coin-schema:qualifier/skos:prefLabel ?qualifierTemp .
-    FILTER(LANG(?qualifierTemp) = 'fi')
-  }
-  OPTIONAL {
-    ?id coin-schema:authority/skos:prefLabel ?authorityTemp .
-    FILTER(LANG(?authorityTemp) = 'fi')
-  }
-  OPTIONAL {
-    ?id coin-schema:denomination/skos:prefLabel ?denominationTemp .
-    FILTER(LANG(?denominationTemp) = 'fi')
-  }
-  BIND(COALESCE(?authorityTemp,"") as ?authorityLabel)
-  BIND(COALESCE(?denominationTemp,"") as ?denominationLabel)
-  BIND(COALESCE(?qualifierTemp,"") as ?qualifierLabel)
-  BIND(CONCAT(?authorityLabel, ' ', ?denominationLabel, ' ', ?qualifierLabel) AS ?searchTermTemp)
-  BIND(REPLACE(?searchTermTemp, " ","+","i") AS ?searchTerm)
-  BIND(CONCAT('https://finna.fi/Search/Results?limit=0&lookfor=', ?searchTerm, '&type=AllFields&filter%5B%5D=~format_ext_str_mv%3A\"0%2FPhysicalObject%2F\"') AS ?image__finnasearch)
-  OPTIONAL {
-    ?id coin-schema:find_site_coordinates/wgs84:lat ?latPoint .
-    ?id coin-schema:find_site_coordinates/wgs84:long ?longTPoint .
-    #BIND(SUBSTR(?latPoint, 4, 1) AS ?lat)
-    #BIND(SUBSTR(?longPoint, 4, 1) AS ?long)
-    BIND("Löytöpaikan koordinaatti löytäjän ilmoituksen mukaan." AS ?pointTextTemp)
-  }
-  BIND(COALESCE(?pointTextTemp, "Löytöpaikka laskettu löytökunnan perusteella (epätarkka).") AS ?point)
 `
 
 export const findsPlacesQuery = `

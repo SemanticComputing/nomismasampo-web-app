@@ -1,14 +1,14 @@
 {
     "id": "finds",
     "endpoint": {
-        "url": "https://ldf.fi/coinsampo/sparql",
+        "url": "http://localhost:3066/ds/",
         "useAuth": true,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
     "sparqlQueriesFile": "SparqlQueriesFinds.js",
     "baseURI": "http://ldf.fi/coinsampo",
     "URITemplate": "<BASE_URI>/coins/<LOCAL_ID>",
-    "facetClass": "coin-schema:Coin",
+    "facetClass": "nmo:Find",
     "frontPageImage": "main_page/kuusinainen.jpg",
     "enableDynamicLanguageChange": true,
     "searchMode": "faceted-search",
@@ -590,72 +590,29 @@
             "facetType": "text",
             "filterType": "textFilter"
         },
-        "denomination": {
-            "containerClass": "ten",
-            "facetType": "hierarchical",
-            "filterType": "uriFilter",
-            "predicate": "coin-schema:denomination",
-            "searchField": true,
-            "sortButton": true,
-            "sortBy": "instanceCount",
-            "parentProperty": "skos:broader",
-            "sortByPredicate": "coin-schema:denomination/skos:prefLabel",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "sortDirection": "desc",
-            "pieChartButton": true
-        },
-        "qualifier": {
-            "containerClass": "ten",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "predicate": "coin-schema:qualifier",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "searchField": true,
-            "sortButton": true,
-            "sortBy": "instanceCount",
-            "sortByPredicate": "coin-schema:qualifier/skos:prefLabel",
-            "sortDirection": "desc",
-            "pieChartButton": true
-        },
         "period": {
             "containerClass": "ten",
             "facetType": "list",
             "filterType": "uriFilter",
-            "predicate": "coin-schema:period",
+            "predicate": "nmo:fieldOfNumismatics",
             "searchField": true,
             "sortButton": true,
             "sortBy": "instanceCount",
-            "sortByPredicate": "coin-schema:period/skos:prefLabel",
+            "sortByPredicate": "nmo:fieldOfNumismatics/skos:prefLabel",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
             "sortDirection": "desc",
             "pieChartButton": true
-        },
-        "earliestYearFacet": {
-            "containerClass": "five",
-            "facetType": "integer",
-            "filterType": "integerFilterRange",
-            "predicate": "coin-schema:earliest_year",
-            "sortByPredicate": "coin-schema:earliest_year",
-            "unit": ""
-        },
-        "latestYearFacet": {
-            "containerClass": "five",
-            "facetType": "integer",
-            "filterType": "integerFilterRange",
-            "predicate": "coin-schema:latest_year",
-            "sortByPredicate": "coin-schema:latest_year",
-            "unit": ""
         },
         "material": {
             "containerClass": "ten",
             "facetType": "list",
             "filterType": "uriFilter",
-            "predicate": "coin-schema:material",
+            "predicate": "nmo:hasMaterial",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
             "searchField": true,
             "sortButton": true,
             "sortBy": "instanceCount",
-            "sortByPredicate": "coin-schema:material/skos:prefLabel",
+            "sortByPredicate": "nmo:hasMaterial/skos:prefLabel",
             "sortDirection": "desc",
             "pieChartButton": true
         },
@@ -663,11 +620,11 @@
             "containerClass": "ten",
             "facetType": "list",
             "filterType": "uriFilter",
-            "predicate": "coin-schema:authority",
+            "predicate": "nmo:hasAuthority",
             "searchField": true,
             "sortButton": true,
             "sortBy": "instanceCount",
-            "sortByPredicate": "coin-schema:authority/skos:prefLabel",
+            "sortByPredicate": "nmo:hasAuthority/skos:prefLabel",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
             "sortDirection": "desc",
             "pieChartButton": true
@@ -676,94 +633,14 @@
             "containerClass": "ten",
             "facetType": "list",
             "filterType": "uriFilter",
-            "predicate": "coin-schema:mint",
+            "predicate": "nmo:hasMint",
             "searchField": true,
             "sortButton": true,
             "sortBy": "instanceCount",
-            "sortByPredicate": "coin-schema:mint/skos:prefLabel",
+            "sortByPredicate": "cnmo:hasMint/skos:prefLabel",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
             "sortDirection": "desc",
             "pieChartButton": true
-        },
-        "country": {
-            "containerClass": "ten",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "predicate": "coin-schema:country",
-            "searchField": true,
-            "sortButton": true,
-            "sortBy": "instanceCount",
-            "sortByPredicate": "coin-schema:country/skos:prefLabel",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "sortDirection": "desc",
-            "pieChartButton": true
-        },
-        "municipality": {
-            "containerClass": "ten",
-            "filterType": "uriFilter",
-            "facetType": "hierarchical",
-            "predicate": "coin-schema:municipality/coin-schema:yso",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "parentProperty": "skos:broader",
-            "searchField": true,
-            "sortButton": true,
-            "sortBy": "instanceCount",
-            "sortByPredicate": "coin-schema:municipality/coin-schema:yso/skos:prefLabel",
-            "sortDirection": "desc",
-            "pieChartButton": true
-        },
-        "context": {
-            "containerClass": "ten",
-            "filterType": "uriFilter",
-            "facetType": "hierarchical",
-            "predicate": "coin-schema:context",
-            "searchField": true,
-            "sortButton": true,
-            "parentProperty": "skos:broader",
-            "sortBy": "instanceCount",
-            "sortByPredicate": "coin-schema:context/skos:prefLabel",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "sortDirection": "desc",
-            "pieChartButton": true
-        },
-        "registrationYear": {
-            "containerClass": "ten",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "predicate": "coin-schema:registration_year",
-            "searchField": true,
-            "sortButton": true,
-            "sortBy": "instanceCount",
-            "sortByPredicate": "coin-schema:registration_year",
-            "sortDirection": "desc",
-            "pieChartButton": true,
-            "literal": true
-        },
-        "placeAccuracy": {
-            "containerClass": "ten",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "predicate": "coin-schema:find_site_coordinates/rdf:type",
-            "facetLabelPredicate": "rdfs:label",
-            "searchField": false,
-            "sortButton": false,
-            "sortBy": "instanceCount",
-            "sortByPredicate": "coin-schema:find_site_coordinates/rdf:type/rdfs:label",
-            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
-            "sortDirection": "desc",
-            "pieChartButton": true
-        },
-        "localId": {
-            "sortByPredicate": "coin-schema:id"
-        },
-        "earliestYear": {
-            "sortByPredicate": "coin-schema:earliest_year"
-        },
-        "latestYear": {
-            "sortByPredicate": "coin-schema:latest_year"
-        },
-        "ascensionNumber": {
-            "sortByPredicate": "coin-schema:ascension_number"
         }
     }
 }

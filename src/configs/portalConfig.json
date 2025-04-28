@@ -3,12 +3,7 @@
     "rootUrl": "",
     "perspectives": {
         "searchPerspectives": [
-            "finds",
-            "authorities",
-            "mints",
-            "guides",
-            "ilppari",
-            "findsampo"
+            "finds"
         ],
         "onlyInstancePages": [
             "denominations",
@@ -18,14 +13,9 @@
         ]
     },
     "localeConfig": {
-        "defaultLocale": "fi",
+        "defaultLocale": "en",
         "readTranslationsFromGoogleSheets": false,
         "availableLocales": [
-            {
-                "id": "fi",
-                "label": "English",
-                "filename": "localeFI.json"
-            },
             {
                 "id": "en",
                 "label": "English",

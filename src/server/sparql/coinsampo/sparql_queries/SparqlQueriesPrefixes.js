@@ -25,6 +25,7 @@ export const prefixes = `
   PREFIX coin-schema: <http://ldf.fi/schema/coinsampo/>
   PREFIX findsampo-core: <http://ldf.fi/schema/findsampo/core/>
   PREFIX : <http://ldf.fi/schema/coinsampo/>
+  PREFIX nmo: <http://nomisma.org/ontology#>
 
 
 `
