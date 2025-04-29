@@ -58,19 +58,10 @@ export const findPropertiesInstancePage =
 // USe for all results
 export const findPropertiesFacetResults = `
 {
-    BIND(?id as ?uri__id)
-    BIND(?id as ?uri__dataProviderUrl)
-    BIND(?id as ?uri__prefLabel)
-    ?id coin-schema:registration_year ?year .
-    ?id coin-schema:number ?number .
-    BIND(CONCAT(STR(?year),'-',STR(?number)) AS ?row)
-
 
     ?id skos:prefLabel ?prefLabel__id .
     ?id skos:prefLabel ?prefLabel__prefLabel .
-    FILTER(LANG(?prefLabel__prefLabel) = '<LANG>')
-    BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
-    BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)
+
   }
   UNION
   {
@@ -83,15 +74,16 @@ export const findPropertiesFacetResults = `
   {
     ?id nmo:hasMint ?mint__id .
     ?mint__id skos:prefLabel ?mint__prefLabel .
-    FILTER(LANG(?mint__prefLabel) = '<LANG>')
-    BIND(CONCAT("/mints/page/", REPLACE(STR(?mint__id), "^.*\\\\/(.+)", "$1")) AS ?mint__dataProviderUrl)
+    #FILTER(LANG(?mint__prefLabel) = '<LANG>')
+    BIND(?mint__id AS ?mint__dataProviderUrl)
   }
   UNION
   {
     ?id nmo:hasAuthority ?authority__id .
-    ?authority__id skos:prefLabel ?authority__prefLabel .
-    FILTER(LANG(?authority__prefLabel) = '<LANG>')
-    BIND(CONCAT("/authorities/page/", REPLACE(STR(?authority__id), "^.*\\\\/(.+)", "$1")) AS ?authority__dataProviderUrl)
+    BIND (?authority__id AS ?authority__prefLabel)
+    # ?authority__id skos:prefLabel ?authority__prefLabel .
+    #FILTER(LANG(?authority__prefLabel) = '<LANG>')
+    BIND(?authority__id AS ?authority__dataProviderUrl)
   }
   UNION
   {
@@ -103,9 +95,17 @@ export const findPropertiesFacetResults = `
   UNION
   {
     ?id nmo:hasMaterial ?material__id .
-    ?material__id skos:prefLabel ?material__prefLabel .
-    FILTER(LANG(?material__prefLabel) = '<LANG>')
-    BIND(CONCAT("/materials/page/", REPLACE(STR(?material__id), "^.*\\\\/(.+)", "$1")) AS ?material__dataProviderUrl)
+    BIND (?material__id AS ?material__prefLabel)
+    #?material__id skos:prefLabel ?material__prefLabel .
+    #FILTER(LANG(?material__prefLabel) = '<LANG>')
+    BIND(?material__id AS ?material__dataProviderUrl)
+  }
+  UNION
+  {
+    ?id nmo:onlineReference ?onlineReference__id .
+    BIND (?onlineReference__id AS ?onlineReference__prefLabel)
+    #?material__id skos:prefLabel ?material__prefLabel .
+    BIND(?onlineReference__id AS ?onlineReference__dataProviderUrl)
   }
 `
 
@@ -114,21 +114,10 @@ export const findsPlacesQuery = `
   (1 as ?instanceCount) # for heatmap
   WHERE {
     <FILTER>
-    ?id a coin-schema:Coin .
-    OPTIONAL
-    {
-      ?id coin-schema:find_site_coordinates/wgs84:lat ?latPoint ;
-      coin-schema:find_site_coordinates/wgs84:long ?longPoint .
-      BIND("green" AS ?markerColorTemp)
-    }
-    ?id coin-schema:municipality ?municipality .
-    ?municipality :yso/wgs84:lat ?latM .
-    ?municipality :yso/wgs84:long ?longM .
+    ?id wgs84:lat ?lat .
+    ?id wgs84:long ?long .
 
-    BIND(COALESCE(?latPoint,?latM) AS ?lat)
-    BIND(COALESCE(?longPoint,?longM) AS ?long)
-
-    BIND(COALESCE(?markerColorTemp,"red") AS ?markerColor)
+    BIND("red" AS ?markerColor)
 
   }
 `

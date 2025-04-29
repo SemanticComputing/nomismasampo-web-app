@@ -230,127 +230,6 @@
                 }
             }
         },
-        "aoristicFinds": {
-            "tabID": 5,
-            "component": "ApexCharts",
-            "doNotRenderOnMount": true,
-            "tabPath": "aoristic_chart",
-            "tabIcon": "BarChart",
-            "facetClass": "finds",
-            "dropdownForResultClasses": true,
-            "defaultResultClass": "findsByAoristicTime50",
-            "resultClasses": {
-                "findsByAoristicTime10": {
-                    "sparqlQuery": "findsByTimeSpansQuery10",
-                    "filterTarget": "find",
-                    "resultMapper": "mapAoristicChart",
-                    "sliceVisibilityThreshold": false,
-                    "dropdownForChartTypes": false,
-                    "chartTypes": [
-
-                        {
-                            "id": "bar",
-                            "createChartData": "createApexBarChartAoristictData"
-                        }
-                    ]
-                },
-                "findsByAoristicTime20": {
-                    "sparqlQuery": "findsByTimeSpansQuery20",
-                    "filterTarget": "find",
-                    "resultMapper": "mapAoristicChart",
-                    "sliceVisibilityThreshold": false,
-                    "dropdownForChartTypes": false,
-                    "chartTypes": [
-                        {
-                            "id": "bar",
-                            "createChartData": "createApexBarChartAoristictData"
-                        }
-                    ]
-                },
-                "findsByAoristicTime50": {
-                    "sparqlQuery": "findsByTimeSpansQuery50",
-                    "filterTarget": "find",
-                    "resultMapper": "mapAoristicChart",
-                    "sliceVisibilityThreshold": false,
-                    "dropdownForChartTypes": false,
-                    "chartTypes": [
-                        {
-                            "id": "bar",
-                            "createChartData": "createApexBarChartAoristictData"
-                        }
-                    ]
-                },
-                "findsByAoristicTime100": {
-                    "sparqlQuery": "findsByTimeSpansQuery100",
-                    "filterTarget": "find",
-                    "resultMapper": "mapAoristicChart",
-                    "sliceVisibilityThreshold": false,
-                    "dropdownForChartTypes": false,
-                    "chartTypes": [
-                        {
-                            "id": "bar",
-                            "createChartData": "createApexBarChartAoristictData"
-                        }
-                    ]
-                }
-            }
-        },
-        "mintsPlacesHeatmap": {
-            "tabID": 6,
-            "tabPath": "mintsheatmap",
-            "tabIcon": "BubbleChart",
-            "component": "Deck",
-            "layerType": "heatmapLayer",
-            "sparqlQuery": "mintsPlacesQuery",
-            "facetClass": "finds",
-            "filterTarget": "id",
-            "resultMapper": "mapPlaces"
-        },
-        "coinsMigrations": {
-            "tabID": 7,
-            "component": "Deck",
-            "tabPath": "migrations",
-            "tabIcon": "Redo",
-            "sparqlQuery": "migrationsQuery",
-            "facetClass": "finds",
-            "filterTarget": "coin",
-            "resultMapper": "makeObjectList",
-            "layerType": "arcLayer",
-            "arcWidthVariable": "instanceCountScaled",
-            "instanceVariable": "coin",
-            "showTooltips": false,
-            "postprocess": {
-                "func": "linearScale",
-                "config": {
-                    "variable": "instanceCount",
-                    "minAllowed": 2,
-                    "maxAllowed": 20
-                }
-            }
-        },
-        "coinsMigrationsDialog": {
-            "sparqlQuery": "migrationsDialogQuery",
-            "filterTarget": "id",
-            "resultMapper": "makeObjectList"
-        },
-        "findPlacesAnimation": {
-            "tabID": 8,
-            "component": "TemporalMap",
-            "tabPath": "findanimation",
-            "tabIcon": "PlayArrow",
-            "sparqlQuery": "findPlacesAnimationQuery",
-            "facetClass": "finds",
-            "filterTarget": "id"
-        },
-        "creationYearFindPlacesAnimation": {
-            "tabID": 9,
-            "component": "TemporalMap",
-            "tabPath": "creationanimation",
-            "tabIcon": "PlayArrow",
-            "sparqlQuery": "creationYearFindPlacesAnimationQuery",
-            "facetClass": "finds",
-            "filterTarget": "id"
-        },
         "csvFinds": {
             "tabID": 10,
             "tabPath": "csv",
@@ -368,17 +247,17 @@
     "maps": {
         "findsPlaces": {
             "center": [
-                65.184809,
-                27.314050
+                54.083336,
+                12.108811
             ],
-            "zoom": 5
+            "zoom": 6
         },
         "findsPlacesHeatmap": {
             "center": [
-                65.184809,
-                27.314050
+                54.083336,
+                12.108811
             ],
-            "zoom": 4
+            "zoom": 6
         },
         "findSpotMap": {
             "center": [
@@ -418,15 +297,6 @@
     },
     "properties": [
         {
-            "id": "localId",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 70
-        },
-        {
             "id": "prefLabel",
             "valueType": "object",
             "makeLink": true,
@@ -434,77 +304,13 @@
             "sortValues": false,
             "numberedList": false,
             "minWidth": 100,
-            "onlyOnInstancePage": true
-        },
-        {
-            "id": "image",
-            "valueType": "image",
-            "previewImageHeight": 100,
-            "makeLink": true,
-            "externalLink": true,
-            "sortValues": false,
-            "numberedList": false,
-            "hideHeader": false
-        },
-        {
-            "id": "denomination",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 110
-        },
-        {
-            "id": "authority",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 90
-        },
-        {
-            "id": "earliestYear",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": true,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 65
-        },
-        {
-            "id": "latestYear",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": true,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 65
+            "onlyOnInstancePage": false
         },
         {
             "id": "period",
             "valueType": "object",
             "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 100
-        },
-        {
-            "id": "material",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 100
-        },
-        {
-            "id": "qualifier",
-            "valueType": "object",
-            "makeLink": false,
-            "externalLink": false,
+            "externalLink": true,
             "sortValues": true,
             "numberedList": false,
             "minWidth": 100
@@ -519,40 +325,31 @@
             "minWidth": 110
         },
         {
-            "id": "country",
-            "valueType": "object",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 110
-        },
-        {
-            "id": "municipality",
+            "id": "material",
             "valueType": "object",
             "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 120
-        },
-        {
-            "id": "context",
-            "valueType": "object",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 80
-        },
-        {
-            "id": "registrationYear",
-            "valueType": "string",
-            "makeLink": false,
-            "externalLink": false,
+            "externalLink": true,
             "sortValues": true,
             "numberedList": false,
             "minWidth": 100
+        },
+        {
+            "id": "authority",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 90
+        },
+        {
+            "id": "onlineReference",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 90
         },
         {
             "id": "note",
@@ -562,26 +359,6 @@
             "sortValues": false,
             "numberedList": false,
             "minWidth": 100
-        },
-        {
-            "id": "ascensionNumber",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": true,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 140
-        },
-        {
-            "id": "imageDescription",
-            "valueType": "string",
-            "makeLink": false,
-            "onlyOnInstancePage": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 120,
-            "renderAsHTML": true
         }
     ],
     "facets": {

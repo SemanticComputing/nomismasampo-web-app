@@ -5,15 +5,15 @@
     "description": "The Sampo-UI framework makes it possible to create highly customizable, user-friendly, and responsive user interfaces using current state-of-the-art JavaScript libraries and data from SPARQL endpoints."
   },
   "appTitle": {
-    "short": "CoinSampo",
+    "short": "NomismaSampo",
     "mobile": "CS",
-    "long": "&nbsp; &nbsp; CoinSampo &nbsp; &nbsp;",
-    "subheading": "Finnish Numismatic Public Finds 2013 - 2023"
+    "long": "&nbsp; &nbsp; NomismaSampo &nbsp; &nbsp;",
+    "subheading": "Nomsima Finds"
   },
   "appDescription1": "Sampo is a web service for searching and studying place names. The search results can be viewed as a table, on maps, and as statistical distributions. Historical and current background maps are provided.",
   "appDescription2": "Start by choosing source dataset(s) and input a place name on the search field. Alternatively you can search by area.",
-  "selectPerspective": "CoinSampo is a prototype cultural heritage service that open data about the numismatic citizen finds reported in Finland in 2013-2023.",
-  "mainPageImageLicence": "CoinSampo is a research prototype developed in <a href='https://seco.cs.aalto.fi/'  target='_blank'>  Semantic Computing research group </a> of Aalto University and University of Helsinki, based on the coin finds data of the Finnish National Museum.",
+  "selectPerspective": "",
+  "mainPageImageLicence": "",
   "backendErrorText": "One of the backend services is not available at the moment. Please try again later.",
   "infoHeader": {
     "toggleInstructions": "Click to show or hide instructions"
@@ -232,7 +232,7 @@
     "finds": {
       "label": "Coin Finds",
       "facetResultsType": "coins",
-      "shortDescription": "Coin finds reported in Finland in 2013-2023",
+      "shortDescription": "Coin finds",
       "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> This perspective can be used to search Finnish coin finds using the faceted filters on the left-hand side of the page. The database contains more than 18.000 coin finds reported to the National Heritage between 2013 and 2013. The search results can be browsed and visualised using the following tabs: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TABLE</STRONG> tab presents the coin finds as a list with attributes. By selecting a link for a concept, you can also access its entity pages. </li> <li> <strong>MAP</STRONG> tab presents the locations where the coins were found. Several base maps are available, including historical maps. Archaeological sites from the Ancient Relics Register can be added as a layer (zoom level 13), and a 200 m protection zone within which archaeology should not be searched can be calculated. You can break down clusters, eventually showing individual sites, by zooming in on the map or by clicking on a cluster. Please note that the accuracy of the find location varies; the coordinate points are as given in the original report and may indicate the exact location of the find or, for example, the centre of the field where the find was made. About 15% of the finds lack coordinates and are not displayed on the map using coordinates based on find municipality. Finds without exact coordinate can be filtered out using the find location accuracy facet. </li> <li> <strong>HEAT MAP</strong> tab generates a kernel density estimation surface that illustrates broader patterns in the distribution of finds. Zooming in or out changes the kernel width used, creating a more detailed or a more general view of the distribution. </li> <li> <strong>PIE/BAR CHART</strong> presents the contents of the statistically as a pie or a bar chart. The following, and more, attribute categories can be selected: period, authority, mint and context.</li> <li> <strong>AORISTIC CHART</strong>  tab illustrates temporal distribution in the data. As many of the coins can only be dated by approximate broad period a conventional statistical timeline visualization cannot be used. The aorist chart is based on a probabilistic calculation of the average weight of coin finds falling into the boxes (columns) in which the timeline is divided (you can choose between four box sizes).  </li> <li> <strong>MINTS</strong> tab visualizes the numbers of selected coins according to their mint locations with a kernel density estimation map surface.</li> <li> <strong>MIGRATIONS</strong> tab presents the movement of the coins from their minting locations (blue end) to their discovery sites (red end). If the place where the coin was struck is not known, no arc is drawn. For visual clarity, the arc terminated at the centre of find municipality rather than at the exact location of the find. Zooming in closer and selecting an arc will open a window listing the coins that make up that arc; selecting an individual coin will take you to its entity page. You can tilt the map view on a Windows machine by clicking the right mouse button and moving the arrow, or on a Mac by pressing mouse/control pad + control and moving the arrow. </li> <li> <strong>FIND YEAR ANIMATION</strong> tab shows where in Finland coin finds were reported each year from 2013 to 2023. </li> <li> <strong>MINTING YEAR ANIMATION</strong> tab shows the arrival of coins in Finland from the Late Iron Age onwards, according to their earliest estimated year of minting (terminus post quem). </li> <li> <strong>CSV</strong>  tab allows you to download the coin finds you have selected using the faceted search, or all coin finds, as a CSV file.</li></ul>",
       "instancePage": {
         "label": "Coin",
