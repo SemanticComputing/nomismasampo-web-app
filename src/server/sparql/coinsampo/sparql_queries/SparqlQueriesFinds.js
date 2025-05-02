@@ -95,9 +95,8 @@ export const findPropertiesFacetResults = `
   UNION
   {
     ?id nmo:hasMaterial ?material__id .
-    BIND (?material__id AS ?material__prefLabel)
-    #?material__id skos:prefLabel ?material__prefLabel .
-    #FILTER(LANG(?material__prefLabel) = '<LANG>')
+    ?material__id skos:prefLabel ?material__prefLabel .
+    FILTER(LANG(?material__prefLabel) = '<LANG>')
     BIND(?material__id AS ?material__dataProviderUrl)
   }
   UNION
