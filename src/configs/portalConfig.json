@@ -51,10 +51,9 @@
         "paginationToolbarHeight": 37,
         "tableFontSize": "0.8rem",
         "topBar": {
-            "logoImage": "logos/kuusinainen.png",
             "logoTextTransform": "none",
             "hideLogoTextOnMobile": true,
-            "showLanguageButton": true,
+            "showLanguageButton": false,
             "feedbackLink": "https://link.webropolsurveys.com/S/6A90F3FF5616C1B6",
             "externalInstructions": true,
             "externalAboutPage": false,
@@ -62,18 +61,6 @@
             "defaultHeight": 64,
             "mobileMenuBreakpoint": 1360,
             "infoDropdown": [
-                {
-                    "id": "aboutExternal",
-                    "externalLink": true,
-                    "translatedUrl": "aboutExternalUrl",
-                    "translatedText": "aboutExternal"
-                },
-                {
-                    "id": "blog",
-                    "externalLink": true,
-                    "translatedUrl": "blogUrl",
-                    "translatedText": "blog"
-                },
                 {
                     "id": "about",
                     "translatedText": "aboutThePortal",
