@@ -1,7 +1,7 @@
 {
     "id": "finds",
     "endpoint": {
-        "url": "http://localhost:3066/ds/",
+        "url": "https://ldf.fi/nomismasampo/sparql",
         "useAuth": true,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
