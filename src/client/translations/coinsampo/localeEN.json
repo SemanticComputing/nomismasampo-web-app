@@ -334,6 +334,10 @@
           "label": "FindSampo",
           "description": "The same object in FindSampo"
         },
+        "onlineReference": {
+          "label": "Online reference",
+          "description": "Online reference"
+        },
         "registrationYear": {
           "label": "Registration year",
           "description": "The year the coin was reported to the Finnish Heritage Agency."

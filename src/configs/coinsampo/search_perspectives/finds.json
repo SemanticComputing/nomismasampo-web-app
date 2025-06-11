@@ -159,74 +159,6 @@
                             "createChartData": "createApexBarChartData"
                         }
                     ]
-                },
-                "findsByMunicipality": {
-                    "sparqlQuery": "findsByMunicipalityQuery",
-                    "filterTarget": "find",
-                    "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": 0.01,
-                    "dropdownForChartTypes": "true",
-                    "chartTypes": [
-                        {
-                            "id": "pie",
-                            "createChartData": "createApexPieChartData"
-                        },
-                        {
-                            "id": "bar",
-                            "createChartData": "createApexBarChartData"
-                        }
-                    ]
-                },
-                "findsByProvince": {
-                    "sparqlQuery": "findsByProvinceQuery",
-                    "filterTarget": "find",
-                    "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": 0.01,
-                    "dropdownForChartTypes": "true",
-                    "chartTypes": [
-                        {
-                            "id": "pie",
-                            "createChartData": "createApexPieChartData"
-                        },
-                        {
-                            "id": "bar",
-                            "createChartData": "createApexBarChartData"
-                        }
-                    ]
-                },
-                "findsByDenomination": {
-                    "sparqlQuery": "findsByDenominationQuery",
-                    "filterTarget": "find",
-                    "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": 0.01,
-                    "dropdownForChartTypes": "true",
-                    "chartTypes": [
-                        {
-                            "id": "pie",
-                            "createChartData": "createApexPieChartData"
-                        },
-                        {
-                            "id": "bar",
-                            "createChartData": "createApexBarChartData"
-                        }
-                    ]
-                },
-                "findsByContext": {
-                    "sparqlQuery": "findsByContextQuery",
-                    "filterTarget": "find",
-                    "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": 0.001,
-                    "dropdownForChartTypes": "true",
-                    "chartTypes": [
-                        {
-                            "id": "pie",
-                            "createChartData": "createApexPieChartData"
-                        },
-                        {
-                            "id": "bar",
-                            "createChartData": "createApexBarChartData"
-                        }
-                    ]
                 }
             }
         },
@@ -414,7 +346,7 @@
             "searchField": true,
             "sortButton": true,
             "sortBy": "instanceCount",
-            "sortByPredicate": "cnmo:hasMint/skos:prefLabel",
+            "sortByPredicate": "nmo:hasMint/skos:prefLabel",
             "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
             "sortDirection": "desc",
             "pieChartButton": true

@@ -477,21 +477,9 @@ export const findsByPeriodQuery = `
   SELECT ?category ?prefLabel (COUNT(DISTINCT ?find) as ?instanceCount)
   WHERE {
     <FILTER>
-    {
-      ?find a coin-schema:Coin .
-      ?find coin-schema:period ?category .
+      ?find a nmo:Find .
+      ?find nmo:fieldOfNumismatics ?category .
       ?category skos:prefLabel ?prefLabel .
-      FILTER(LANG(?prefLabel) = '<LANG>')
-    }
-    UNION
-    {
-      ?find a coin-schema:Coin .
-      FILTER NOT EXISTS {
-        ?find coin-schema:period [] .
-      }
-      BIND("Unknown" as ?category)
-      BIND("Unknown " as ?prefLabel)
-    }
   }
   GROUP BY ?category ?prefLabel
   ORDER BY DESC(?instanceCount)
@@ -501,21 +489,10 @@ export const findsByRulerQuery = `
   SELECT ?category ?prefLabel (COUNT(DISTINCT ?find) as ?instanceCount)
   WHERE {
     <FILTER>
-    {
-      ?find a coin-schema:Coin .
-      ?find coin-schema:authority ?category .
-      ?category skos:prefLabel ?prefLabel .
-      FILTER(LANG(?prefLabel) = '<LANG>')
-    }
-    UNION
-    {
-      ?find a coin-schema:Coin .
-      FILTER NOT EXISTS {
-        ?find coin-schema:authority [] .
-      }
-      BIND("Unknown" as ?category)
-      BIND("Unknown " as ?prefLabel)
-    }
+      ?find a nmo:Find .
+      ?find nmo:hasAuthority ?category .
+      BIND (STRAFTER(STR(?category), "http://nomisma.org/id/") AS ?prefLabel)
+      #?category skos:prefLabel ?prefLabel .
   }
   GROUP BY ?category ?prefLabel
   ORDER BY DESC(?instanceCount)
@@ -525,21 +502,9 @@ export const findsByMintQuery = `
   SELECT ?category ?prefLabel (COUNT(DISTINCT ?find) as ?instanceCount)
   WHERE {
     <FILTER>
-    {
-      ?find a coin-schema:Coin .
-      ?find coin-schema:mint ?category .
+      ?find a nmo:Find .
+      ?find nmo:hasMint ?category .
       ?category skos:prefLabel ?prefLabel .
-      FILTER(LANG(?prefLabel) = '<LANG>')
-    }
-    UNION
-    {
-      ?find a coin-schema:Coin .
-      FILTER NOT EXISTS {
-        ?find coin-schema:mint [] .
-      }
-      BIND("Unknown" as ?category)
-      BIND("Unknown " as ?prefLabel)
-    }
   }
   GROUP BY ?category ?prefLabel
   ORDER BY DESC(?instanceCount)
@@ -573,21 +538,9 @@ export const findsByMaterialQuery = `
   SELECT ?category ?prefLabel (COUNT(DISTINCT ?find) as ?instanceCount)
   WHERE {
     <FILTER>
-    {
-      ?find a coin-schema:Coin .
-      ?find coin-schema:material ?category .
+      ?find a nmo:Find .
+      ?find nmo:hasMaterial ?category .
       ?category skos:prefLabel ?prefLabel .
-      FILTER(LANG(?prefLabel) = '<LANG>')
-    }
-    UNION
-    {
-      ?find a coin-schema:Coin .
-      FILTER NOT EXISTS {
-        ?find coin-schema:material [] .
-      }
-      BIND("Unknown" as ?category)
-      BIND("Unknown " as ?prefLabel)
-    }
   }
   GROUP BY ?category ?prefLabel
   ORDER BY DESC(?instanceCount)
